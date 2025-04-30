@@ -1,0 +1,303 @@
+openapi: 3.0.1
+info:
+  title: ClickUp
+  description: Consulta las tareas y los desarrolladores asociados.
+  version: '1.0'
+servers:
+  - url: https://algoritmiaapimanagement.azure-api.net/clickup-tasks
+paths:
+  '/v2/list/{list_id}/field/consultants':
+    get:
+      summary: GetConsultants
+      description: Retorna el valor de cada desarrollador asociado a las tareas
+      operationId: 680760421728ab5da6483a0f
+      parameters:
+        - name: list_id
+          in: path
+          description: Identificador de la lista
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nombre:
+                      type: string
+                    estado:
+                      type: string
+                    fecha:
+                      type: string
+                    asignadoA:
+                      type: string
+              example:
+                - id: string
+                  nombre: string
+                  estado: string
+                  fecha: string
+                  asignadoA: string
+        '400':
+          description: Parámetros incorrectos
+        '401':
+          description: No autorizado
+  '/v2/list/{list_id}/task/consultant':
+    get:
+      summary: GetTasksByConsultant
+      description: Retorna las tareas asignadas a un usuario en una lista específica para una fecha dada.
+      operationId: 680764afb704d182bbad23bb
+      parameters:
+        - name: list_id
+          in: path
+          description: Identificador de la lista
+          required: true
+          schema:
+            type: ''
+        - name: due_date_gt
+          in: query
+          description: Fecha de finalización en formato yyyy-MM-dd
+          schema:
+            type: ''
+        - name: consultant
+          in: query
+          description: Valor asociado al desarrollador
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nombre:
+                      type: string
+                    estado:
+                      type: string
+                    fecha:
+                      type: string
+                    asignadoA:
+                      type: string
+              example:
+                - id: string
+                  nombre: string
+                  estado: string
+                  fecha: string
+                  asignadoA: string
+        '400':
+          description: Parámetros incorrectos
+        '401':
+          description: No autorizado
+  '/v2/list/{list_id}/task/project':
+    get:
+      summary: GetTasksByProject
+      description: Retorna las tareas asignadas a un usuario en una lista específica para una fecha dada.
+      operationId: 68076b749ed1d1e83108c840
+      parameters:
+        - name: list_id
+          in: path
+          description: Identificador de la lista
+          required: true
+          schema:
+            type: ''
+        - name: due_date_gt
+          in: query
+          description: Fecha de finalización en formato yyyy-MM-dd
+          schema:
+            type: ''
+        - name: project
+          in: query
+          description: Valor asociado al proyecto
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nombre:
+                      type: string
+                    estado:
+                      type: string
+                    fecha:
+                      type: string
+                    asignadoA:
+                      type: string
+              example:
+                - id: string
+                  nombre: string
+                  estado: string
+                  fecha: string
+                  asignadoA: string
+        '400':
+          description: Parámetros incorrectos
+        '401':
+          description: No autorizado
+  '/v2/list/{list_id}/field/projects':
+    get:
+      summary: GetProjects
+      description: Retorna el valor de cada desarrollador asociado a las tareas
+      operationId: 68076c47d22b751dc1e88312
+      parameters:
+        - name: list_id
+          in: path
+          description: Identificador de la lista
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nombre:
+                      type: string
+                    estado:
+                      type: string
+                    fecha:
+                      type: string
+                    asignadoA:
+                      type: string
+              example:
+                - id: string
+                  nombre: string
+                  estado: string
+                  fecha: string
+                  asignadoA: string
+        '400':
+          description: Parámetros incorrectos
+        '401':
+          description: No autorizado
+  '/v2/list/{list_id}/task/developer':
+    get:
+      summary: GetTasksByDeveloper
+      description: Retorna las tareas asignadas a un usuario en una lista específica para una fecha dada.
+      operationId: GetTasksByDeveloper
+      parameters:
+        - name: list_id
+          in: path
+          description: Identificador de la lista
+          required: true
+          schema:
+            type: ''
+        - name: due_date_gt
+          in: query
+          description: Fecha de finalización en formato yyyy-MM-dd
+          schema:
+            type: ''
+        - name: developer
+          in: query
+          description: Valor asociado al desarrollador
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nombre:
+                      type: string
+                    estado:
+                      type: string
+                    fecha:
+                      type: string
+                    asignadoA:
+                      type: string
+              example:
+                - id: string
+                  nombre: string
+                  estado: string
+                  fecha: string
+                  asignadoA: string
+        '400':
+          description: Parámetros incorrectos
+        '401':
+          description: No autorizado
+  '/v2/list/{list_id}/field/developers':
+    get:
+      summary: GetDevelopers
+      description: Retorna el valor de cada desarrollador asociado a las tareas
+      operationId: GetDevelopers
+      parameters:
+        - name: list_id
+          in: path
+          description: Identificador de la lista
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: Lista de tareas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    nombre:
+                      type: string
+                    estado:
+                      type: string
+                    fecha:
+                      type: string
+                    asignadoA:
+                      type: string
+              example:
+                - id: string
+                  nombre: string
+                  estado: string
+                  fecha: string
+                  asignadoA: string
+        '400':
+          description: Parámetros incorrectos
+        '401':
+          description: No autorizado
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: clickup-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

@@ -1,0 +1,878 @@
+openapi: 3.0.1
+info:
+  title: Dynamics365
+  description: ''
+  version: '1.0'
+servers:
+  - url: https://algoritmiaapimanagement.azure-api.net/Dynamics365
+paths:
+  /api/services/UserSessionService/AifUserSessionService/GetUserSessionInfo:
+    post:
+      summary: GetUserSesion
+      operationId: getusersesion
+      responses:
+        '200':
+          description: ''
+  /data/Projects:
+    get:
+      summary: GetProjects
+      description: Retorna la lista de proyectos en el erp interno
+      operationId: getprojects
+      parameters:
+        - name: ProjectName
+          in: query
+          description: Nombre o parte del nombre del proyecto o proyectos que se quieren consultar
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de proyectos del erp interno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetProjects'
+              example:
+                '@@odata.context': string
+                value:
+                  - '@@odata.etag': string
+                    dataAreaId: string
+                    ProjectID: string
+                    ActualStartDate: string
+                    CertifiedPayroll: string
+                    CanVerifyCostAgainstRemainingForecast: string
+                    TrackCost: string
+                    CanCarryForwardRemainingBudgets: string
+                    BankDocumentType: string
+                    DimensionDisplayValue: string
+                    IsActivityRequiredForHourForecast: string
+                    SortingId2: string
+                    Calendar: string
+                    ZakatContractAmendment: 0
+                    LocationID: string
+                    IsActivityRequiredForItemTransaction: string
+                    ZakatContractPeriod: string
+                    ParentProject: string
+                    RequisitionOrPurchaseOrderControl: string
+                    ConstraintType: string
+                    AlertTimeFrameWeeks: 0
+                    CustomerAccount: string
+                    Status: string
+                    AllowNegativeBudgetsToBeCarriedForward: string
+                    DurationInDays: 0
+                    ProjectStage: string
+                    InvoicingMethod: string
+                    SortingId1: string
+                    EndDate1: string
+                    ZakatProjectValue: 0
+                    ConstraintDate: string
+                    BudgetControlInterval: string
+                    DateOfCreation: string
+                    PercentToRetain: 0
+                    TotalEffortInHours: 0
+                    ZakatContractDate: string
+                    IsActivityRequiredForExpenseForecast: string
+                    PostingLevel: string
+                    InvoiceCost: string
+                    TimeMeasure: string
+                    BudgetOverrunDefault: string
+                    ExtensionDate: string
+                    ProjectName: string
+                    ProjectedStartDate: string
+                    StartDate1: string
+                    MinimumTimeIncrement: 0
+                    ProjectGroup: string
+                    ProjectType: string
+                    SubprojectIDFormat: string
+                    SearchPriority: string
+                    CanUseBudgetControl: string
+                    ItemValidation: string
+                    TaskCompletelyScheduled: string
+                    DurationDeterminesEndDate: string
+                    IsActivityRequiredForExpenseTransaction: string
+                    Unit: string
+                    IsActivityRequiredForItemForecast: string
+                    HourValidation: string
+                    SalesPriceGroup: string
+                    Notes: string
+                    Description: string
+                    WorkerRespFinancialPersonnelNumber: string
+                    ProjectedEndDate: string
+                    DefaultOnSubprojects: string
+                    ActualEndDate: string
+                    FixedAssetNumber: string
+                    CanUseAlternateProjectBudget: string
+                    SalesTaxGroup: string
+                    JobPayType: string
+                    ProjectBudgetManagement: string
+                    IsReadyForInvoicing: string
+                    WorkerArchitectPersonnelNumber: string
+                    LedgerPostingSortPriority: string
+                    Telephone: string
+                    CustomerRetentionTermId: string
+                    DeliveryName: string
+                    TransactionTypesControlled: string
+                    PSASchedIgnoreCalendar: string
+                    ProjectTemplate: string
+                    DefaultInvoiceAccount: string
+                    JobIdentification: string
+                    AlternateProject: string
+                    ProjectOrTask: string
+                    Header: string
+                    IsActivityRequiredForHourTransaction: string
+                    ScheduleStatus: string
+                    Milestone: string
+                    ExternalRevision: string
+                    EndTime: 0
+                    Category: string
+                    EstimateProjectID: string
+                    StartTime: 0
+                    WorkerRespSalesPersonnelNumber: string
+                    ProjectContractID: string
+                    TemplateApplied: string
+                    Fax: string
+                    Email: string
+                    SortingId3: string
+                    WorkerResponsiblePersonnelNumber: string
+                    ActiveRevision: string
+                    Date: string
+                    ZakatSubject: string
+  /data/ProjectResources:
+    get:
+      summary: GetResource
+      description: Devuelve información del trabajador o trabajadores dado el nombre o parte del nombre indicado en ResourceName.
+      operationId: getresource
+      parameters:
+        - name: ResourceName
+          in: query
+          description: Nombre o parte del nombre del trabajador
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de trabajadores que coinciden con el nombre pasado por parámetros
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResourceResponseV2'
+              example:
+                '@@odata.context': string
+                value:
+                  - '@@odata.etag': string
+                    ResourceId: string
+                    ResourceCompanyId: string
+                    PersonnelNumber: string
+                    Name: string
+                    VendId: string
+                    Type: string
+                    ALGResourceRecordId: 0
+  /Timesheets:
+    get:
+      summary: GetTimesheetLines
+      description: 'Devuelve las líneas de imputación de la semana del dia ''checkDate'' y filtradas por trabajador ''Resource'' '
+      operationId: gettimesheetlines
+      parameters:
+        - name: Resource
+          in: query
+          description: Id del trabajador que se quiere comprobar
+          required: true
+          schema:
+            type: integer
+        - name: checkDate
+          in: query
+          description: Fecha de la semana que se quiere comprobar
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de líneas de imputación del recurso y semana consultada
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTimesheetLinesV2'
+              example:
+                '@@odata.context': string
+                value:
+                  - Resource: 0
+                    SaturdayHours: 0
+                    ProjectName: string
+                    SaturdayComments: string
+                    ThursdayHours: 0.998545544512757
+                    TuesdayComments: string
+                    ThursdayComments: string
+                    SundayHours: 0
+                    ProjId: string
+                    DayFrom: string
+                    ActivityNumber: string
+                    TuesdayHours: 0.655005024688835
+                    MondayComments: string
+                    MondayHours: 0
+                    SundayComments: string
+                    FridayHours: 0
+                    ActivityDesc: string
+                    FridayComments: string
+                    WednesdayComments: string
+                    WednesdayHours: 0
+                    DayTo: string
+                    ApprovalStatus: string
+  /ResourcesList:
+    get:
+      summary: GetResourcesList
+      description: Devuelve una lista de recursos activos a fecha 'CheckDate'
+      operationId: getresourceslist
+      parameters:
+        - name: CheckDate
+          in: query
+          description: Fecha en la cual se quiere hacer la consulta
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de recursos activos a la fecha pasada por parámetros
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetResourceList'
+              example:
+                '@@odata.context': string
+                value:
+                  - Resource: 0
+                    Name: string
+                    ValidTo: string
+                    ValidFrom: string
+  /TimesheetsDate:
+    get:
+      summary: GetTimesheetDate
+      operationId: gettimesheetdate
+      parameters:
+        - name: checkDate
+          in: query
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+  /hours:
+    get:
+      summary: GetGroupedHours
+      description: 'Devuelve una lista de los trabajadores con la suma de horas imputadas en la semana de la fecha ''checkDate'' '
+      operationId: getgroupedhours
+      parameters:
+        - name: checkDate
+          in: query
+          description: Fecha de la semana que se quiere consultar
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Lista de trabajadores que han imputado menos horas de las que deberían
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetGroupedHours'
+              example:
+                '@@odata.context': string
+                value:
+                  - Resource: 0
+                    DayTo: string
+                    TotalHourSum: 0.220331485350472
+                    DayFrom: string
+  /clone-680a8/hours:
+    get:
+      summary: GetGroupedHours (clone)
+      description: 'Devuelve una lista de los trabajadores que han imputado menos de ''totalHours'' horas en la semana de la fecha ''checkDate'' '
+      operationId: 680a83c8cdfa0af869a91d11
+      parameters:
+        - name: checkDate
+          in: query
+          description: Fecha de la semana que se quiere consultar
+          required: true
+          schema:
+            type: string
+        - name: totalHours
+          in: query
+          description: Horas que teóricamente los trabajadores deben tener imputadas
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Lista de trabajadores que han imputado menos horas de las que deberían
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetGroupedHours'
+              example:
+                '@@odata.context': string
+                value:
+                  - Resource: 0
+                    DayTo: string
+                    TotalHourSum: 0.220331485350472
+                    DayFrom: string
+components:
+  schemas:
+    GetResourceResponse:
+      type: object
+      properties:
+        '@@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            required:
+              - '@@odata.etag'
+              - ResourceId
+              - ResourceCompanyId
+              - PersonnelNumber
+              - Name
+              - VendId
+              - Type
+            type: object
+            properties:
+              '@@odata.etag':
+                type: string
+              ResourceId:
+                type: string
+              ResourceCompanyId:
+                type: string
+              PersonnelNumber:
+                type: string
+              Name:
+                type: string
+              VendId:
+                type: string
+              Type:
+                type: string
+    GetResourceResponseV2:
+      type: object
+      properties:
+        '@@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            required:
+              - '@@odata.etag'
+              - ResourceId
+              - ResourceCompanyId
+              - PersonnelNumber
+              - Name
+              - VendId
+              - Type
+              - ALGResourceRecordId
+            type: object
+            properties:
+              '@@odata.etag':
+                type: string
+              ResourceId:
+                type: string
+              ResourceCompanyId:
+                type: string
+              PersonnelNumber:
+                type: string
+              Name:
+                type: string
+              VendId:
+                type: string
+              Type:
+                type: string
+              ALGResourceRecordId:
+                type: integer
+    GetTimesheetLines:
+      type: object
+      properties:
+        '@@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            required:
+              - '@@odata.etag'
+              - dataAreaId
+              - ProjectDataArea
+              - TimesheetNumber
+              - Resource
+              - DayFrom
+              - ActivityNumber
+              - LegalEntity
+              - ProjectId
+              - DayTo
+            type: object
+            properties:
+              '@@odata.etag':
+                type: string
+              dataAreaId:
+                type: string
+              ProjectDataArea:
+                type: string
+              TimesheetNumber:
+                type: string
+              Resource:
+                type: integer
+              DayFrom:
+                type: string
+              ActivityNumber:
+                type: string
+              LegalEntity:
+                type: string
+              ProjectId:
+                type: string
+              DayTo:
+                type: string
+    GetTimesheetLinesV2:
+      type: object
+      properties:
+        '@@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            required:
+              - Resource
+              - SaturdayHours
+              - ProjectName
+              - SaturdayComments
+              - ThursdayHours
+              - TuesdayComments
+              - ThursdayComments
+              - SundayHours
+              - ProjId
+              - DayFrom
+              - ActivityNumber
+              - TuesdayHours
+              - MondayComments
+              - MondayHours
+              - SundayComments
+              - FridayHours
+              - ActivityDesc
+              - FridayComments
+              - WednesdayComments
+              - WednesdayHours
+              - DayTo
+              - ApprovalStatus
+            type: object
+            properties:
+              Resource:
+                type: integer
+              SaturdayHours:
+                type: integer
+              ProjectName:
+                type: string
+              SaturdayComments:
+                type: string
+              ThursdayHours:
+                type: number
+              TuesdayComments:
+                type: string
+              ThursdayComments:
+                type: string
+              SundayHours:
+                type: integer
+              ProjId:
+                type: string
+              DayFrom:
+                type: string
+              ActivityNumber:
+                type: string
+              TuesdayHours:
+                type: number
+              MondayComments:
+                type: string
+              MondayHours:
+                type: integer
+              SundayComments:
+                type: string
+              FridayHours:
+                type: integer
+              ActivityDesc:
+                type: string
+              FridayComments:
+                type: string
+              WednesdayComments:
+                type: string
+              WednesdayHours:
+                type: integer
+              DayTo:
+                type: string
+              ApprovalStatus:
+                type: string
+    GetGroupedHours:
+      type: object
+      properties:
+        '@@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            required:
+              - Resource
+              - DayTo
+              - TotalHourSum
+              - DayFrom
+            type: object
+            properties:
+              Resource:
+                type: integer
+              DayTo:
+                type: string
+              TotalHourSum:
+                type: number
+              DayFrom:
+                type: string
+    GetResourceList:
+      type: object
+      properties:
+        '@@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            required:
+              - Resource
+              - Name
+              - ValidTo
+              - ValidFrom
+            type: object
+            properties:
+              Resource:
+                type: integer
+              Name:
+                type: string
+              ValidTo:
+                type: string
+              ValidFrom:
+                type: string
+    GetProjects:
+      type: object
+      properties:
+        '@@odata.context':
+          type: string
+        value:
+          type: array
+          items:
+            required:
+              - '@@odata.etag'
+              - dataAreaId
+              - ProjectID
+              - ActualStartDate
+              - CertifiedPayroll
+              - CanVerifyCostAgainstRemainingForecast
+              - TrackCost
+              - CanCarryForwardRemainingBudgets
+              - BankDocumentType
+              - DimensionDisplayValue
+              - IsActivityRequiredForHourForecast
+              - SortingId2
+              - Calendar
+              - ZakatContractAmendment
+              - LocationID
+              - IsActivityRequiredForItemTransaction
+              - ZakatContractPeriod
+              - ParentProject
+              - RequisitionOrPurchaseOrderControl
+              - ConstraintType
+              - AlertTimeFrameWeeks
+              - CustomerAccount
+              - Status
+              - AllowNegativeBudgetsToBeCarriedForward
+              - DurationInDays
+              - ProjectStage
+              - InvoicingMethod
+              - SortingId1
+              - EndDate1
+              - ZakatProjectValue
+              - ConstraintDate
+              - BudgetControlInterval
+              - DateOfCreation
+              - PercentToRetain
+              - TotalEffortInHours
+              - ZakatContractDate
+              - IsActivityRequiredForExpenseForecast
+              - PostingLevel
+              - InvoiceCost
+              - TimeMeasure
+              - BudgetOverrunDefault
+              - ExtensionDate
+              - ProjectName
+              - ProjectedStartDate
+              - StartDate1
+              - MinimumTimeIncrement
+              - ProjectGroup
+              - ProjectType
+              - SubprojectIDFormat
+              - SearchPriority
+              - CanUseBudgetControl
+              - ItemValidation
+              - TaskCompletelyScheduled
+              - DurationDeterminesEndDate
+              - IsActivityRequiredForExpenseTransaction
+              - Unit
+              - IsActivityRequiredForItemForecast
+              - HourValidation
+              - SalesPriceGroup
+              - Notes
+              - Description
+              - WorkerRespFinancialPersonnelNumber
+              - ProjectedEndDate
+              - DefaultOnSubprojects
+              - ActualEndDate
+              - FixedAssetNumber
+              - CanUseAlternateProjectBudget
+              - SalesTaxGroup
+              - JobPayType
+              - ProjectBudgetManagement
+              - IsReadyForInvoicing
+              - WorkerArchitectPersonnelNumber
+              - LedgerPostingSortPriority
+              - Telephone
+              - CustomerRetentionTermId
+              - DeliveryName
+              - TransactionTypesControlled
+              - PSASchedIgnoreCalendar
+              - ProjectTemplate
+              - DefaultInvoiceAccount
+              - JobIdentification
+              - AlternateProject
+              - ProjectOrTask
+              - Header
+              - IsActivityRequiredForHourTransaction
+              - ScheduleStatus
+              - Milestone
+              - ExternalRevision
+              - EndTime
+              - Category
+              - EstimateProjectID
+              - StartTime
+              - WorkerRespSalesPersonnelNumber
+              - ProjectContractID
+              - TemplateApplied
+              - Fax
+              - Email
+              - SortingId3
+              - WorkerResponsiblePersonnelNumber
+              - ActiveRevision
+              - Date
+              - ZakatSubject
+            type: object
+            properties:
+              '@@odata.etag':
+                type: string
+              dataAreaId:
+                type: string
+              ProjectID:
+                type: string
+              ActualStartDate:
+                type: string
+              CertifiedPayroll:
+                type: string
+              CanVerifyCostAgainstRemainingForecast:
+                type: string
+              TrackCost:
+                type: string
+              CanCarryForwardRemainingBudgets:
+                type: string
+              BankDocumentType:
+                type: string
+              DimensionDisplayValue:
+                type: string
+              IsActivityRequiredForHourForecast:
+                type: string
+              SortingId2:
+                type: string
+              Calendar:
+                type: string
+              ZakatContractAmendment:
+                type: integer
+              LocationID:
+                type: string
+              IsActivityRequiredForItemTransaction:
+                type: string
+              ZakatContractPeriod:
+                type: string
+              ParentProject:
+                type: string
+              RequisitionOrPurchaseOrderControl:
+                type: string
+              ConstraintType:
+                type: string
+              AlertTimeFrameWeeks:
+                type: integer
+              CustomerAccount:
+                type: string
+              Status:
+                type: string
+              AllowNegativeBudgetsToBeCarriedForward:
+                type: string
+              DurationInDays:
+                type: integer
+              ProjectStage:
+                type: string
+              InvoicingMethod:
+                type: string
+              SortingId1:
+                type: string
+              EndDate1:
+                type: string
+              ZakatProjectValue:
+                type: integer
+              ConstraintDate:
+                type: string
+              BudgetControlInterval:
+                type: string
+              DateOfCreation:
+                type: string
+              PercentToRetain:
+                type: integer
+              TotalEffortInHours:
+                type: integer
+              ZakatContractDate:
+                type: string
+              IsActivityRequiredForExpenseForecast:
+                type: string
+              PostingLevel:
+                type: string
+              InvoiceCost:
+                type: string
+              TimeMeasure:
+                type: string
+              BudgetOverrunDefault:
+                type: string
+              ExtensionDate:
+                type: string
+              ProjectName:
+                type: string
+              ProjectedStartDate:
+                type: string
+              StartDate1:
+                type: string
+              MinimumTimeIncrement:
+                type: integer
+              ProjectGroup:
+                type: string
+              ProjectType:
+                type: string
+              SubprojectIDFormat:
+                type: string
+              SearchPriority:
+                type: string
+              CanUseBudgetControl:
+                type: string
+              ItemValidation:
+                type: string
+              TaskCompletelyScheduled:
+                type: string
+              DurationDeterminesEndDate:
+                type: string
+              IsActivityRequiredForExpenseTransaction:
+                type: string
+              Unit:
+                type: string
+              IsActivityRequiredForItemForecast:
+                type: string
+              HourValidation:
+                type: string
+              SalesPriceGroup:
+                type: string
+              Notes:
+                type: string
+              Description:
+                type: string
+              WorkerRespFinancialPersonnelNumber:
+                type: string
+              ProjectedEndDate:
+                type: string
+              DefaultOnSubprojects:
+                type: string
+              ActualEndDate:
+                type: string
+              FixedAssetNumber:
+                type: string
+              CanUseAlternateProjectBudget:
+                type: string
+              SalesTaxGroup:
+                type: string
+              JobPayType:
+                type: string
+              ProjectBudgetManagement:
+                type: string
+              IsReadyForInvoicing:
+                type: string
+              WorkerArchitectPersonnelNumber:
+                type: string
+              LedgerPostingSortPriority:
+                type: string
+              Telephone:
+                type: string
+              CustomerRetentionTermId:
+                type: string
+              DeliveryName:
+                type: string
+              TransactionTypesControlled:
+                type: string
+              PSASchedIgnoreCalendar:
+                type: string
+              ProjectTemplate:
+                type: string
+              DefaultInvoiceAccount:
+                type: string
+              JobIdentification:
+                type: string
+              AlternateProject:
+                type: string
+              ProjectOrTask:
+                type: string
+              Header:
+                type: string
+              IsActivityRequiredForHourTransaction:
+                type: string
+              ScheduleStatus:
+                type: string
+              Milestone:
+                type: string
+              ExternalRevision:
+                type: string
+              EndTime:
+                type: integer
+              Category:
+                type: string
+              EstimateProjectID:
+                type: string
+              StartTime:
+                type: integer
+              WorkerRespSalesPersonnelNumber:
+                type: string
+              ProjectContractID:
+                type: string
+              TemplateApplied:
+                type: string
+              Fax:
+                type: string
+              Email:
+                type: string
+              SortingId3:
+                type: string
+              WorkerResponsiblePersonnelNumber:
+                type: string
+              ActiveRevision:
+                type: string
+              Date:
+                type: string
+              ZakatSubject:
+                type: string
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

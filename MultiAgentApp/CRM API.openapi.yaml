@@ -1,0 +1,344 @@
+openapi: 3.0.1
+info:
+  title: CRM API
+  description: 'API para consultar, añadir y editar entidades desde Dynamics CRM vía APIM'
+  version: '1.0'
+servers:
+  - url: https://algoritmiaapimanagement.azure-api.net/clone
+paths:
+  /accounts:
+    get:
+      summary: Get Accounts
+      description: Obtiene todas las cuentas.
+      operationId: getAccounts
+      responses:
+        '200':
+          description: Lista de cuentas
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    accountid:
+                      type: string
+                    name:
+                      type: string
+                    emailaddress1:
+                      type: string
+              example:
+                - accountid: string
+                  name: string
+                  emailaddress1: string
+    post:
+      summary: Create Account
+      description: Crea una nueva cuenta.
+      operationId: createAccount
+      requestBody:
+        description: Datos de la nueva cuenta
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                emailaddress1:
+                  type: string
+            example:
+              name: string
+              emailaddress1: string
+      responses:
+        '201':
+          description: Cuenta creada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+  /contacts:
+    get:
+      summary: Get Contacts
+      description: Obtiene todos los contactos.
+      operationId: getContacts
+      responses:
+        '200':
+          description: Lista de contactos
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    contactid:
+                      type: string
+                    firstname:
+                      type: string
+                    lastname:
+                      type: string
+                    emailaddress1:
+                      type: string
+              example:
+                - contactid: string
+                  firstname: string
+                  lastname: string
+                  emailaddress1: string
+    post:
+      summary: Create Contact
+      description: Crea un nuevo contacto.
+      operationId: createContact
+      requestBody:
+        description: Datos del nuevo contacto
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                emailaddress1:
+                  type: string
+            example:
+              firstname: string
+              lastname: string
+              emailaddress1: string
+      responses:
+        '201':
+          description: Contacto creado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+  /salesorders:
+    get:
+      summary: Get Sales Orders
+      description: Obtiene todas las órdenes de venta.
+      operationId: getSalesOrders
+      responses:
+        '200':
+          description: Lista de órdenes de venta
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    salesorderid:
+                      type: string
+                    totalamount:
+                      type: number
+              example:
+                - salesorderid: string
+                  totalamount: 0
+    post:
+      summary: Create Sales Order
+      description: Crea una nueva orden de venta.
+      operationId: createSalesOrder
+      requestBody:
+        description: Datos de la nueva orden de venta
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                totalamount:
+                  type: number
+            example:
+              totalamount: 0
+      responses:
+        '201':
+          description: Orden de venta creada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+  /quotes:
+    get:
+      summary: Get Quotes
+      description: Obtiene todas las cotizaciones.
+      operationId: getQuotes
+      responses:
+        '200':
+          description: Lista de cotizaciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    quoteid:
+                      type: string
+                    totalamount:
+                      type: number
+              example:
+                - quoteid: string
+                  totalamount: 0
+    post:
+      summary: Create Quote
+      description: Crea una nueva cotización.
+      operationId: createQuote
+      requestBody:
+        description: Datos de la nueva cotización
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                totalamount:
+                  type: number
+            example:
+              totalamount: 0
+      responses:
+        '201':
+          description: Cotización creada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+  '/accounts/{accountid}':
+    patch:
+      summary: Edit Account
+      description: Edita una cuenta existente en Dynamics CRM.
+      operationId: editAccount
+      parameters:
+        - name: accountid
+          in: path
+          description: ID de la cuenta a editar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos de la cuenta a modificar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                emailaddress1:
+                  type: string
+            example:
+              name: string
+              emailaddress1: string
+      responses:
+        '200':
+          description: Cuenta editada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+  '/contacts/{contactid}':
+    patch:
+      summary: Edit Contact
+      description: Edita un contacto existente en Dynamics CRM.
+      operationId: editContact
+      parameters:
+        - name: contactid
+          in: path
+          description: ID del contacto a editar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos del contacto a modificar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                emailaddress1:
+                  type: string
+            example:
+              firstname: string
+              lastname: string
+              emailaddress1: string
+      responses:
+        '200':
+          description: Contacto editado correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+  '/salesorders/{salesorderid}':
+    patch:
+      summary: Edit Sales Order
+      description: Edita una orden de venta existente en Dynamics CRM.
+      operationId: editSalesOrder
+      parameters:
+        - name: salesorderid
+          in: path
+          description: ID de la orden de venta a editar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos de la orden de venta a modificar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                totalamount:
+                  type: number
+            example:
+              totalamount: 0
+      responses:
+        '200':
+          description: Orden de venta editada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+  '/quotes/{quoteid}':
+    patch:
+      summary: Edit Quote
+      description: Edita una cotización existente en Dynamics CRM.
+      operationId: editQuote
+      parameters:
+        - name: quoteid
+          in: path
+          description: ID de la cotización a editar
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: Datos de la cotización a modificar
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                totalamount:
+                  type: number
+            example:
+              totalamount: 0
+      responses:
+        '200':
+          description: Cotización editada correctamente
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

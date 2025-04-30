@@ -1,0 +1,158 @@
+openapi: 3.0.1
+info:
+  title: Sharepoint
+  description: Consulta documentación en Sharepoint
+  version: '1.0'
+servers:
+  - url: https://algoritmiaapimanagement.azure-api.net/sharepoint-graph
+paths:
+  /users:
+    get:
+      summary: GetUsers
+      description: Devuelve una lista de usuarios
+      operationId: users
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Llamada incorrecta
+        '401':
+          description: No autorizado
+        '403':
+          description: Acceso denegado
+  /sites:
+    get:
+      summary: GetSites
+      description: Devuelve un listado de sitios de Sharepoint basado en una búsqueda por palabra clave.
+      operationId: search-site
+      parameters:
+        - name: search
+          in: query
+          description: Término de búsqueda para sitios de SharePoint
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Llamada incorrecta
+        '401':
+          description: No autorizado
+        '403':
+          description: Acceso denegado
+  '/sites/{siteId}':
+    get:
+      summary: GetSite
+      description: Devuelve la información de un sitio en específico a partir de su id.
+      operationId: getsite
+      parameters:
+        - name: siteId
+          in: path
+          description: Id del sitio.
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Llamada incorrecta
+        '401':
+          description: No autorizado
+        '403':
+          description: Acceso denegado
+  '/sites/{siteId}/drives':
+    get:
+      summary: GetDrives
+      description: Devuelve un listado de las bibliotecas de documentos del sitio especificado a partir de su id.
+      operationId: getdrives
+      parameters:
+        - name: siteId
+          in: path
+          description: Id del sitio.
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Llamada incorrecta
+        '401':
+          description: No autorizado
+        '403':
+          description: Acceso denegado
+  '/sites/{siteId}/drives/{driveId}/root/children':
+    get:
+      summary: GetItemsInDrive
+      description: Devuelve un listado de los documentos dentro de una biblioteca de documentos a partir de un id de sitio y un id de biblioteca de documentos.
+      operationId: getitemsindrive
+      parameters:
+        - name: siteId
+          in: path
+          description: Id del sitio.
+          required: true
+          schema:
+            type: ''
+        - name: driveId
+          in: path
+          description: Id de biblioteca de documentos.
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Llamada incorrecta
+        '401':
+          description: No autorizado
+        '403':
+          description: Acceso denegado
+  '/sites/{siteId}/drives/{driveId}/items/{itemId}':
+    get:
+      summary: GetItem
+      description: 'Devuelve un documento a partir de un id de sitio, un id de biblioteca de documentos y un id de documento.'
+      operationId: getitem
+      parameters:
+        - name: siteId
+          in: path
+          description: Id del sitio.
+          required: true
+          schema:
+            type: ''
+        - name: driveId
+          in: path
+          description: Id de biblioteca de documentos.
+          required: true
+          schema:
+            type: ''
+        - name: itemId
+          in: path
+          description: Id del documento.
+          required: true
+          schema:
+            type: ''
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Llamada incorrecta
+        '401':
+          description: No autorizado
+        '403':
+          description: Acceso denegado
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

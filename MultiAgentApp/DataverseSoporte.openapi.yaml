@@ -1,0 +1,17 @@
+openapi: 3.0.1
+info:
+  title: DataverseSoporte
+  description: ''
+  version: '1.0'
+servers:
+  - url: https://algoritmiaapimanagement.azure-api.net
+paths:
+  /cr973_soportedevopses:
+    get:
+      summary: DevOpsInfo
+      description: Obtener la información de la tabla de clientes donde se almacenan toda su información y se obtiene esta en formato JSON para que posteriormente pueda ser interpretada.
+      operationId: items
+      responses:
+        '200':
+          description: 'null'
+components: { }
