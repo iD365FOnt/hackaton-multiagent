@@ -30,7 +30,7 @@ La arquitectura de MultiAgentApp se basa en los siguientes componentes principal
     * Consultant Agent
     * Project Manager Agent
     * Marketing Agent
-* **Agentes No Interactivos:** Agentes especializados que proporcionan acceso a servicios o datos específicos. Son utilizados por los agentes interactivos para realizar tareas concretas. Encapsulan la lógica de comunicación con servicios externos específicos (Azure, Fabric, OpenHR, Dataverse, Dynamics 365, ClickUp, CRM, SharePoint, Web Algoritmia) utilizando las definiciones OpenAPI (`.yaml`) proporcionadas. Estos incluyen:
+* **Agentes No Interactivos:** Agentes especializados que proporcionan acceso a servicios o datos específicos. Son utilizados por los agentes interactivos para realizar tareas concretas. Encapsulan la lógica de comunicación con servicios externos específicos (Azure, Fabric, OpenHR, Dataverse, Dynamics 365, ClickUp, CRM, SharePoint) utilizando las definiciones OpenAPI (`.yaml`) proporcionadas. Estos incluyen:
     * Fabric Agent
     * Azure Agent
     * OpenHR Agent
@@ -39,7 +39,6 @@ La arquitectura de MultiAgentApp se basa en los siguientes componentes principal
     * ClickUp Agent
     * CRM Agent
     * SharePoint Agent
-    * Web Algoritmia Agent
 * **APIs Externas (OpenAPI):** Se utilizan archivos de definición OpenAPI (`.yaml`) para describir las interfaces de los servicios externos con los que interactúan los agentes no interactivos.
 ## Tecnologías Utilizadas
 
